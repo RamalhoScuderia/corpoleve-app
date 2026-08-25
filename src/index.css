@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+@theme {
+  --color-secondary-container: #e0dfdf;
+  --color-on-tertiary: #ffffff;
+  --color-background: #fbf9f8;
+  --color-secondary-fixed: #e3e2e1;
+  --color-error-container: #ffdad6;
+  --color-surface-dim: #dbd9d9;
+  --color-surface-bright: #fbf9f8;
+  --color-surface-variant: #e4e2e2;
+  --color-surface-container: #efeded;
+  --color-primary: #3e6842;
+  --color-on-secondary-container: #626362;
+  --color-on-tertiary-container: #534200;
+  --color-tertiary: #735c00;
+  --color-inverse-on-surface: #f2f0f0;
+  --color-on-surface: #1b1c1c;
+  --color-surface: #fbf9f8;
+  --color-on-primary-fixed-variant: #274f2c;
+  --color-inverse-surface: #303030;
+  --color-on-background: #1b1c1c;
+  --color-surface-container-high: #eae8e7;
+  --color-on-tertiary-fixed: #241a00;
+  --color-on-tertiary-fixed-variant: #574500;
+  --color-on-error: #ffffff;
+  --color-secondary: #5e5e5e;
+  --color-primary-fixed: #bfefbe;
+  --color-outline-variant: #c2c9be;
+  --color-tertiary-container: #d2ad35;
+  --color-secondary-fixed-dim: #c7c6c5;
+  --color-primary-container: #8fbc8f;
+  --color-on-secondary: #ffffff;
+  --color-surface-container-highest: #e4e2e2;
+  --color-tertiary-fixed: #ffe088;
+  --color-on-primary-container: #234c29;
+  --color-on-surface-variant: #424940;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-error-container: #93000a;
+  --color-tertiary-fixed-dim: #e9c349;
+  --color-on-primary: #ffffff;
+  --color-surface-container-low: #f5f3f3;
+  --color-error: #ba1a1a;
+  --color-surface-tint: #3e6842;
+  --color-inverse-primary: #a4d2a4;
+  --color-outline: #727970;
+  --color-on-secondary-fixed: #1a1c1c;
+  --color-on-primary-fixed: #002107;
+  --color-primary-fixed-dim: #a4d2a4;
+  --color-on-secondary-fixed-variant: #464746;
+
+  --font-display: "Playfair Display", serif;
+  --font-headline: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Inter", sans-serif;
+}
+
+body {
+  background-color: #fbf9f8;
+  color: #1b1c1c;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.icon-fill,
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.soft-blur {
+  box-shadow: 0 10px 40px -10px rgba(143, 188, 143, 0.15);
+}
+
+.meal-card-blur {
+  box-shadow: 0 10px 40px -10px rgba(143, 188, 143, 0.08);
+}
+
+.spa-card {
+  box-shadow: 0 10px 25px -5px rgba(115, 92, 0, 0.04), 0 8px 10px -6px rgba(115, 92, 0, 0.02);
+}
+
+/* Custom Checkbox */
+.custom-checkbox {
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #c2c9be;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.custom-checkbox::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #3e6842;
+  background-color: CanvasText;
+  transform-origin: center;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.custom-checkbox:checked {
+  border-color: #3e6842;
+  background-color: #8fbc8f;
+}
+
+.custom-checkbox:checked::before {
+  transform: scale(1);
+}
+
+/* Square Checkbox for shopping list */
+.square-checkbox {
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #c2c9be;
+  border-radius: 4px;
+  display: grid;
+  place-content: center;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.square-checkbox::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  background-color: white;
+  transform-origin: center;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.square-checkbox:checked {
+  background-color: #8fbc8f;
+  border-color: #8fbc8f;
+}
+
+.square-checkbox:checked::before {
+  transform: scale(1);
+}
+
+/* Animations */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #d2ad35;
+  opacity: 0;
+  animation: sparkle-anim 3s ease-in-out infinite;
+}
+
+@keyframes sparkle-anim {
+  0% { transform: scale(0) translateY(0); opacity: 0; }
+  50% { transform: scale(1) translateY(-20px); opacity: 1; }
+  100% { transform: scale(0) translateY(-40px); opacity: 0; }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

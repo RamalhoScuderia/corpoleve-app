@@ -1,0 +1,6 @@
+{
+  "name": "Desafio 14 Dias - Corpo Leve",
+  "description": "Aplicativo PWA do Desafio 14 Dias Corpo Leve com plano alimentar, receitas, checklist, lista de compras e acompanhamento de progresso.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

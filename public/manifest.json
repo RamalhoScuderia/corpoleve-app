@@ -1,0 +1,16 @@
+{
+  "short_name": "Corpo Leve",
+  "name": "Desafio 14 Dias Corpo Leve",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#fbf9f8",
+  "theme_color": "#3e6842",
+  "display": "standalone",
+  "orientation": "portrait"
+}
