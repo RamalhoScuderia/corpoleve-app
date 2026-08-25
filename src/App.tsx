@@ -12,20 +12,35 @@ import { RecipeDetailScreen } from './components/RecipeDetailScreen';
 import { ProgressScreen } from './components/ProgressScreen';
 import { BibliotecaScreen } from './components/BibliotecaScreen';
 import { CongratulationsScreen } from './components/CongratulationsScreen';
-import { getItemFromStorage, setItemInStorage, STORAGE_KEYS } from './utils/storage';
+import {
+  getItemFromStorage,
+  setItemInStorage,
+  STORAGE_KEYS,
+} from './utils/storage';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('onboarding');
   const [selectedDay, setSelectedDay] = useState<number>(1);
-  const [selectedRecipeId, setSelectedRecipeId] = useState<string>('bowl-quinoa-batata-doce');
-  
+  const [selectedRecipeId, setSelectedRecipeId] = useState<string>(
+    'bowl-quinoa-batata-doce'
+  );
+
+  // Guarda de qual tela a receita foi aberta
+  const [recipeReturnScreen, setRecipeReturnScreen] =
+    useState<Screen>('recipes');
+
   // Local state persistence via LocalStorage
   const [completedDays, setCompletedDays] = useState<number[]>(() =>
     getItemFromStorage<number[]>(STORAGE_KEYS.COMPLETED_DAYS, [])
   );
 
-  const [dailyChecklists, setDailyChecklists] = useState<Record<number, string[]>>(() =>
-    getItemFromStorage<Record<number, string[]>>(STORAGE_KEYS.DAILY_CHECKLISTS, {})
+  const [dailyChecklists, setDailyChecklists] = useState<
+    Record<number, string[]>
+  >(() =>
+    getItemFromStorage<Record<number, string[]>>(
+      STORAGE_KEYS.DAILY_CHECKLISTS,
+      {}
+    )
   );
 
   const [waterGoal, setWaterGoal] = useState<number>(() =>
@@ -36,12 +51,15 @@ export default function App() {
     getItemFromStorage<number | null>(STORAGE_KEYS.USER_WEIGHT, null)
   );
 
-  const [completedChecklistsCount, setCompletedChecklistsCount] = useState<number>(() =>
-    getItemFromStorage<number>(STORAGE_KEYS.CHECKLISTS_COUNT, 0)
-  );
+  const [completedChecklistsCount, setCompletedChecklistsCount] =
+    useState<number>(() =>
+      getItemFromStorage<number>(STORAGE_KEYS.CHECKLISTS_COUNT, 0)
+    );
 
   const [favoriteRecipes, setFavoriteRecipes] = useState<string[]>(() =>
-    getItemFromStorage<string[]>(STORAGE_KEYS.FAVORITES, ['bowl-quinoa-batata-doce'])
+    getItemFromStorage<string[]>(STORAGE_KEYS.FAVORITES, [
+      'bowl-quinoa-batata-doce',
+    ])
   );
 
   // Sync state changes automatically to LocalStorage
@@ -86,7 +104,7 @@ export default function App() {
 
   const handleCompleteDay = (dayNum: number) => {
     if (!completedDays.includes(dayNum)) {
-      setCompletedDays(prev => [...prev, dayNum]);
+      setCompletedDays((prev) => [...prev, dayNum]);
     }
 
     if (dayNum === 14) {
@@ -97,19 +115,26 @@ export default function App() {
     }
   };
 
+  // Agora registra de onde a receita foi aberta
   const handleOpenRecipe = (recipeId: string) => {
+    setRecipeReturnScreen(currentScreen);
     setSelectedRecipeId(recipeId);
     setCurrentScreen('recipe_detail');
   };
 
   const handleToggleFavorite = (recipeId: string) => {
-    setFavoriteRecipes(prev =>
-      prev.includes(recipeId) ? prev.filter(id => id !== recipeId) : [...prev, recipeId]
+    setFavoriteRecipes((prev) =>
+      prev.includes(recipeId)
+        ? prev.filter((id) => id !== recipeId)
+        : [...prev, recipeId]
     );
   };
 
-  const handleSaveChecklist = (checkedItems: string[], dayNum: number) => {
-    setDailyChecklists(prev => {
+  const handleSaveChecklist = (
+    checkedItems: string[],
+    dayNum: number
+  ) => {
+    setDailyChecklists((prev) => {
       const updated = { ...prev, [dayNum]: checkedItems };
       setCompletedChecklistsCount(Object.keys(updated).length);
       return updated;
@@ -183,7 +208,7 @@ export default function App() {
         return (
           <RecipeDetailScreen
             recipeId={selectedRecipeId}
-            onBack={() => setCurrentScreen('recipes')}
+            onBack={() => setCurrentScreen(recipeReturnScreen)}
             isFavorite={favoriteRecipes.includes(selectedRecipeId)}
             onToggleFavorite={handleToggleFavorite}
           />
@@ -214,16 +239,21 @@ export default function App() {
         return <CongratulationsScreen onNavigate={setCurrentScreen} />;
 
       default:
-        return <DashboardScreen
-          currentDay={selectedDay}
-          completedDaysCount={completedDays.length}
-          onNavigate={setCurrentScreen}
-          onOpenDayPlan={handleOpenDayPlan}
-        />;
+        return (
+          <DashboardScreen
+            currentDay={selectedDay}
+            completedDaysCount={completedDays.length}
+            onNavigate={setCurrentScreen}
+            onOpenDayPlan={handleOpenDayPlan}
+          />
+        );
     }
   };
 
-  const showStandardHeader = currentScreen !== 'onboarding' && currentScreen !== 'congratulations' && currentScreen !== 'recipe_detail';
+  const showStandardHeader =
+    currentScreen !== 'onboarding' &&
+    currentScreen !== 'congratulations' &&
+    currentScreen !== 'recipe_detail';
 
   return (
     <div className="min-h-screen bg-background text-on-background flex flex-col font-body">
@@ -232,7 +262,11 @@ export default function App() {
           currentScreen={currentScreen}
           onNavigate={setCurrentScreen}
           onBack={() => {
-            if (currentScreen === 'day_plan' || currentScreen === 'checklist' || currentScreen === 'shopping_list') {
+            if (
+              currentScreen === 'day_plan' ||
+              currentScreen === 'checklist' ||
+              currentScreen === 'shopping_list'
+            ) {
               setCurrentScreen('dashboard');
             } else {
               setCurrentScreen('dashboard');
@@ -241,16 +275,15 @@ export default function App() {
         />
       )}
 
-      <main className="flex-grow">
-        {renderContent()}
-      </main>
+      <main className="flex-grow">{renderContent()}</main>
 
-      {currentScreen !== 'onboarding' && currentScreen !== 'congratulations' && (
-        <BottomNavBar
-          currentScreen={currentScreen}
-          onNavigate={setCurrentScreen}
-        />
-      )}
+      {currentScreen !== 'onboarding' &&
+        currentScreen !== 'congratulations' && (
+          <BottomNavBar
+            currentScreen={currentScreen}
+            onNavigate={setCurrentScreen}
+          />
+        )}
     </div>
   );
 }
