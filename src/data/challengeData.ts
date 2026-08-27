@@ -21,7 +21,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '20 Minutos',
     difficulty: 'Fácil',
     featured: true,
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/13-prato-brasileiro-com-arroz-feijao-e-frango.png',
     ingredients: [
       '1 filé de peito de frango grelhado na frigideira com temperos naturais',
       '3 colheres de sopa de arroz soltinho (integral ou branco)',
@@ -49,7 +49,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '25 Minutos',
     difficulty: 'Fácil',
     featured: true,
-    image: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/14-carne-moida-com-arroz-e-legumes.png',
     ingredients: [
       '120g de carne moída magra (patinho ou acém)',
       '1/2 cenoura picada em cubinhos',
@@ -76,7 +76,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '10 Minutos',
     difficulty: 'Muito Fácil',
     featured: false,
-    image: 'https://images.unsplash.com/photo-1510693206972-df098062cb71?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/06-omelete-de-tomate-e-queijo.png',
     ingredients: [
       '2 ovos inteiros caipiras',
       '1 fatia média de queijo minas picado',
@@ -103,7 +103,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '12 Minutos',
     difficulty: 'Fácil',
     featured: true,
-    image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/07-crepioca-de-frango.png',
     ingredients: [
       '1 ovo inteiro',
       '2 colheres de sopa de goma de tapioca',
@@ -156,7 +156,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '15 Minutos',
     difficulty: 'Fácil',
     featured: true,
-    image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/05-cuscuz-com-ovo-e-queijo.png',
     ingredients: [
       '4 colheres de sopa de flocão de milho hidratado com água e pitada de sal',
       '2 ovos mexidos na manteiga ou azeite',
@@ -182,7 +182,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '8 Minutos',
     difficulty: 'Muito Fácil',
     featured: false,
-    image: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/11-ovos-cremosos-com-pao-na-chapa.png',
     ingredients: [
       '1 pão francês fresquinho (ou 2 fatias de pão de fôrma)',
       '1 a 2 ovos fritos com gota de azeite ou mexidos',
@@ -208,7 +208,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '8 Minutos',
     difficulty: 'Muito Fácil',
     featured: false,
-    image: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/46-tapioca-pequena-com-queijo.png',
     ingredients: [
       '3 colheres de sopa de goma de tapioca peneirada',
       '1 fatia generosa de queijo minas frescal',
@@ -233,7 +233,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '10 Minutos',
     difficulty: 'Muito Fácil',
     featured: true,
-    image: 'https://images.unsplash.com/photo-1528207776546-385e71986565?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/04-panqueca-de-banana-e-aveia.png',
     ingredients: [
       '1 banana madura amassada (prata ou nanica)',
       '1 ovo inteiro',
@@ -312,7 +312,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '30 Minutos',
     difficulty: 'Fácil',
     featured: false,
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/19-escondidinho-rapido-de-mandioca-com-carne.png',
     ingredients: [
       '1 xícara de mandioca cozida e amassada como purê',
       '100g de carne moída refogada com tomate e temperos',
@@ -338,7 +338,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '12 Minutos',
     difficulty: 'Muito Fácil',
     featured: false,
-    image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/32-torta-de-legumes-de-frigideira.png',
     ingredients: [
       '2 ovos inteiros',
       '1 colher de sopa de aveia ou farinha de milho',
@@ -495,7 +495,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '5 Minutos',
     difficulty: 'Muito Fácil',
     featured: false,
-    image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/45-iogurte-com-mamao-e-aveia.png',
     ingredients: [
       '1 potinho de iogurte natural integral ou desnatado (170g)',
       '1/2 fatia de mamão papaia picado',
@@ -521,7 +521,7 @@ export const RECIPES: Recipe[] = [
     prepTime: '15 Minutos',
     difficulty: 'Fácil',
     featured: false,
-    image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/25-panqueca-simples-de-carne-moida.png',
     ingredients: [
       '1 ovo',
       '2 colheres de sopa de farinha de aveia ou goma de tapioca',
@@ -640,7 +640,7 @@ export const RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '5 Minutos',
     difficulty: 'Muito Fácil',
-    image: 'https://images.unsplash.com/photo-1578849278619-e73505e9610f?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/48-pipoca-caseira-de-panela.png',
     ingredients: [
       '3 colheres de sopa de milho para pipoca',
       '1 colher de chá de azeite de oliva ou óleo',
@@ -707,7 +707,7 @@ export const RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '4 Minutos',
     difficulty: 'Muito Fácil',
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/46-tapioca-pequena-com-queijo.png',
     ingredients: [
       '2 colheres de sopa de goma de tapioca peneirada',
       '1 fatia de queijo minas ou muçarela',
@@ -925,7 +925,7 @@ export const RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '3 Minutos',
     difficulty: 'Muito Fácil',
-    image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/41-fruta-com-iogurte-natural.png',
     ingredients: [
       '5 morangos frescos picados',
       '3 colheres de iogurte natural',
@@ -1013,7 +1013,7 @@ export const RECIPES: Recipe[] = [
     category: 'Snacks',
     prepTime: '3 Minutos',
     difficulty: 'Muito Fácil',
-    image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&q=80&w=800',
+    image: '/recipes/51-omelete-de-caneca.png',
     ingredients: [
       '1 ovo caipira',
       '1 colher de sopa de tomate picado',
@@ -1134,9 +1134,9 @@ export const FOURTEEN_DAYS_PLANS: DayPlan[] = [
     dayNumber: 1,
     title: 'A Regra dos 2 Copos d\'Água',
     quote: 'Um pequeno gesto praticado com constância transforma totalmente o seu dia.',
-    todayTalk: 'Bem-vinda ao seu primeiro dia! Hoje não vamos cortar nada do seu prato nem inventar regras difíceis. Nosso único foco é dar ao seu corpo a hidratação que ele precisa. Muitas vezes, sinais como cansaço ou fome fora de hora são apenas sede velada.',
+    todayTalk: 'Bem-vinda ao seu primeiro dia! Hoje não vamos cortar nada do seu prato nem inventar regras difíceis. Nosso único foco é começar por um hábito simples: prestar mais atenção à hidratação ao longo do dia e chegar às refeições com mais calma.',
     mission: 'Beber 2 copos de água logo antes do almoço e 2 copos de água logo antes do jantar.',
-    whyItMatters: 'A água prepara o seu sistema digestivo, melhora a absorção dos nutrientes e ajuda a acalmar o ritmo antes de comer, permitindo saborear a refeição com presença.',
+    whyItMatters: 'Criar um momento para beber água antes das refeições ajuda você a lembrar da hidratação e também funciona como uma pequena pausa antes de comer, favorecendo uma refeição mais tranquila e consciente.',
     checklistItems: [
       'Tomei 2 copos de água antes do almoço',
       'Tomei 2 copos de água antes do jantar',
@@ -1163,8 +1163,8 @@ export const FOURTEEN_DAYS_PLANS: DayPlan[] = [
       {
         id: 'm1-3',
         time: 'Lanche',
-        title: 'Pausa Inteligente com Fruta e Castanhas',
-        description: 'Uma pausa gostosa com fruta e aveia para acalmar o corpo no meio da tarde.',
+        title: 'Pausa Inteligente com Mamão, Iogurte e Aveia',
+        description: 'Uma pausa gostosa com mamão, iogurte e aveia para manter a rotina simples no meio da tarde.',
         recipeId: 'iogurte-mamao-aveia',
         icon: 'bakery_dining'
       },
@@ -1172,7 +1172,7 @@ export const FOURTEEN_DAYS_PLANS: DayPlan[] = [
         id: 'm1-4',
         time: 'Jantar',
         title: 'Peixe Selado com Legumes no Vapor',
-        description: 'Uma refeição leve e aconchegante para garantir um descanso tranquilo à noite.',
+        description: 'Uma refeição leve e aconchegante para fechar o dia. Lembre dos seus 2 copos de água antes de sentar à mesa.',
         recipeId: 'peixe-grelhado-legumes',
         icon: 'dinner_dining'
       }
@@ -1184,9 +1184,9 @@ export const FOURTEEN_DAYS_PLANS: DayPlan[] = [
     },
     practicalTip: 'Deixe uma garrafa de água charmosa e visível na sua mesa de trabalho. Ter a água ao alcance dos olhos torna o hábito automático.',
     marketTip: 'Economia no mercado: compre frutas da estação como mamão e banana, que duram bem e custam menos na feira.',
-    curiosity: 'Muitas vezes o cérebro confunde a sensação de sede com fome. Manter a hidratação evita beliscar sem necessidade.',
+    curiosity: 'Sede e fome são sinais diferentes, mas na correria do dia é fácil deixar a hidratação em segundo plano. Ter água por perto ajuda a tornar esse cuidado mais automático.',
     congratulations: 'Você já deu o primeiro passo! Parabéns por concluir seu primeiro dia com determinação.',
-    nextDayExpectation: 'Amanhã você vai descobrir um hábito simples na hora de comer que melhora a digestão e ajuda a secar sem mudar a comida.',
+    nextDayExpectation: 'Amanhã você vai descobrir um hábito simples na hora de comer que pode ajudar a perceber melhor a saciedade e tornar a refeição mais tranquila, sem precisar mudar o que está no prato.',
     reflection: 'Como você se sentiu ao dar esse primeiro passo simples de cuidado com o seu corpo hoje?'
   },
   {

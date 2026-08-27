@@ -21,6 +21,7 @@ import {
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('onboarding');
   const [selectedDay, setSelectedDay] = useState<number>(1);
+
   const [selectedRecipeId, setSelectedRecipeId] = useState<string>(
     'bowl-quinoa-batata-doce'
   );
@@ -57,9 +58,7 @@ export default function App() {
     );
 
   const [favoriteRecipes, setFavoriteRecipes] = useState<string[]>(() =>
-    getItemFromStorage<string[]>(STORAGE_KEYS.FAVORITES, [
-      'bowl-quinoa-batata-doce',
-    ])
+    getItemFromStorage<string[]>(STORAGE_KEYS.FAVORITES, [])
   );
 
   // Sync state changes automatically to LocalStorage
@@ -89,7 +88,10 @@ export default function App() {
 
   // Scroll to top on screen change
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }, [currentScreen, selectedDay, selectedRecipeId]);
 
   const handleStartChallenge = () => {
@@ -103,19 +105,21 @@ export default function App() {
   };
 
   const handleCompleteDay = (dayNum: number) => {
-    if (!completedDays.includes(dayNum)) {
+    const isAlreadyCompleted = completedDays.includes(dayNum);
+
+    // Primeiro clique: apenas conclui o dia e permanece nele
+    if (!isAlreadyCompleted) {
       setCompletedDays((prev) => [...prev, dayNum]);
+      return;
     }
 
+    // Segundo clique no Dia 14: finaliza o desafio
     if (dayNum === 14) {
       setCurrentScreen('congratulations');
-    } else {
-      const nextDay = Math.min(14, dayNum + 1);
-      setSelectedDay(nextDay);
     }
   };
 
-  // Agora registra de onde a receita foi aberta
+  // Registra de qual tela a receita foi aberta
   const handleOpenRecipe = (recipeId: string) => {
     setRecipeReturnScreen(currentScreen);
     setSelectedRecipeId(recipeId);
@@ -135,8 +139,13 @@ export default function App() {
     dayNum: number
   ) => {
     setDailyChecklists((prev) => {
-      const updated = { ...prev, [dayNum]: checkedItems };
+      const updated = {
+        ...prev,
+        [dayNum]: checkedItems,
+      };
+
       setCompletedChecklistsCount(Object.keys(updated).length);
+
       return updated;
     });
   };
@@ -156,7 +165,11 @@ export default function App() {
   const renderContent = () => {
     switch (currentScreen) {
       case 'onboarding':
-        return <OnboardingScreen onStart={handleStartChallenge} />;
+        return (
+          <OnboardingScreen
+            onStart={handleStartChallenge}
+          />
+        );
 
       case 'dashboard':
         return (
@@ -183,7 +196,7 @@ export default function App() {
         return (
           <ChecklistScreen
             currentDay={selectedDay}
-            savedItems={dailyChecklists[selectedDay] || ['water', 'meals']}
+            savedItems={dailyChecklists[selectedDay] || []}
             waterGoal={waterGoal}
             userWeight={userWeight}
             onSaveProgress={handleSaveChecklist}
@@ -236,7 +249,11 @@ export default function App() {
         );
 
       case 'congratulations':
-        return <CongratulationsScreen onNavigate={setCurrentScreen} />;
+        return (
+          <CongratulationsScreen
+            onNavigate={setCurrentScreen}
+          />
+        );
 
       default:
         return (
@@ -262,20 +279,14 @@ export default function App() {
           currentScreen={currentScreen}
           onNavigate={setCurrentScreen}
           onBack={() => {
-            if (
-              currentScreen === 'day_plan' ||
-              currentScreen === 'checklist' ||
-              currentScreen === 'shopping_list'
-            ) {
-              setCurrentScreen('dashboard');
-            } else {
-              setCurrentScreen('dashboard');
-            }
+            setCurrentScreen('dashboard');
           }}
         />
       )}
 
-      <main className="flex-grow">{renderContent()}</main>
+      <main className="flex-grow">
+        {renderContent()}
+      </main>
 
       {currentScreen !== 'onboarding' &&
         currentScreen !== 'congratulations' && (

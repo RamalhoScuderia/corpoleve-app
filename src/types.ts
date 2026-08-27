@@ -46,7 +46,7 @@ export interface Recipe {
   id: string;
   title: string;
   summary: string;
-  category: 'Café da Manhã' | 'Almoço' | 'Jantar' | 'Snacks';
+  category: 'Café da Manhã' | 'Almoço' | 'Jantar' | 'Snacks' | 'Lanche' | 'SOS - Até 10 Min';
   prepTime: string;
   difficulty: string;
   image: string;

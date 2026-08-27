@@ -13,7 +13,7 @@ interface ChecklistScreenProps {
 
 export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
   onSaveProgress,
-  savedItems = ['water', 'meals'],
+  savedItems = [],
   currentDay = 1,
   waterGoal = 3.5,
   userWeight = null,
@@ -23,7 +23,9 @@ export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
   const [checkedIds, setCheckedIds] = useState<string[]>(savedItems);
   const [currentWaterGoal, setCurrentWaterGoal] = useState<number>(waterGoal);
   const [showWeightInput, setShowWeightInput] = useState<boolean>(!userWeight);
-  const [weightInput, setWeightInput] = useState<string>(userWeight ? String(userWeight) : '70');
+  const [weightInput, setWeightInput] = useState<string>(
+    userWeight ? String(userWeight) : '70'
+  );
   const [showSavedToast, setShowSavedToast] = useState(false);
 
   useEffect(() => {
@@ -36,40 +38,59 @@ export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
 
   const toggleItem = (id: string) => {
     setCheckedIds((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+      prev.includes(id)
+        ? prev.filter((i) => i !== id)
+        : [...prev, id]
     );
   };
 
   const handleCalculateAndSaveWeight = () => {
     const parsedWeight = parseFloat(weightInput);
-    if (!isNaN(parsedWeight) && parsedWeight > 20 && parsedWeight < 250) {
+
+    if (
+      !isNaN(parsedWeight) &&
+      parsedWeight > 20 &&
+      parsedWeight < 250
+    ) {
       const calculatedGoal = Number((parsedWeight / 20).toFixed(1));
+
       setCurrentWaterGoal(calculatedGoal);
+
       if (onUpdateWeight) {
         onUpdateWeight(parsedWeight);
       }
+
       if (onUpdateWaterGoal) {
         onUpdateWaterGoal(calculatedGoal);
       }
+
       setShowWeightInput(false);
     }
   };
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
+
     onSaveProgress(checkedIds, currentDay);
+
     if (onUpdateWaterGoal) {
       onUpdateWaterGoal(currentWaterGoal);
     }
+
     setShowSavedToast(true);
-    setTimeout(() => setShowSavedToast(false), 3000);
+
+    setTimeout(() => {
+      setShowSavedToast(false);
+    }, 3000);
   };
 
   const previewGoal = () => {
     const w = parseFloat(weightInput);
+
     if (!isNaN(w) && w > 20) {
       return (w / 20).toFixed(1);
     }
+
     return null;
   };
 
@@ -80,9 +101,11 @@ export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
         <span className="font-label text-xs uppercase text-primary font-semibold tracking-widest bg-primary-container/20 border border-primary-container/30 px-3 py-1 rounded-full inline-block mb-2">
           Dia {currentDay} de 14
         </span>
+
         <h2 className="font-display text-2xl md:text-3xl font-bold text-primary mb-2">
           Checklist Diário
         </h2>
+
         <p className="font-body text-base text-secondary">
           Acompanhe seus pequenos passos para um grande bem-estar.
         </p>
@@ -90,14 +113,20 @@ export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
 
       {/* Form Container */}
       <div className="bg-surface border border-surface-variant rounded-xl p-6 md:p-8 shadow-[0_8px_30px_rgb(143,188,143,0.06)]">
-        {/* Meta de Água Personalizada Section */}
+        {/* Meta de Água Personalizada */}
         {showWeightInput ? (
           <div className="mb-6 p-5 bg-surface-bright border border-primary-container/50 rounded-xl space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-xl">scale</span>
-                <h3 className="font-display text-base font-bold text-primary">Qual é o seu peso?</h3>
+                <span className="material-symbols-outlined text-primary text-xl">
+                  scale
+                </span>
+
+                <h3 className="font-display text-base font-bold text-primary">
+                  Qual é o seu peso?
+                </h3>
               </div>
+
               {userWeight && (
                 <button
                   type="button"
@@ -108,9 +137,11 @@ export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
                 </button>
               )}
             </div>
+
             <p className="font-body text-xs text-secondary">
               Digite seu peso em kg para calcularmos sua meta de hidratação ideal.
             </p>
+
             <div className="flex gap-2 items-center">
               <div className="relative flex-grow">
                 <input
@@ -120,10 +151,12 @@ export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
                   placeholder="Ex: 70"
                   className="w-full bg-surface border border-surface-variant rounded-xl pl-4 pr-10 py-3 font-body text-base text-on-surface focus:outline-none focus:ring-2 focus:ring-primary"
                 />
+
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 font-label text-xs font-semibold text-secondary">
                   kg
                 </span>
               </div>
+
               <button
                 type="button"
                 onClick={handleCalculateAndSaveWeight}
@@ -132,10 +165,16 @@ export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
                 Salvar Meta
               </button>
             </div>
+
             {previewGoal() && (
               <p className="font-label text-xs text-primary font-semibold flex items-center gap-1 pt-1">
-                <span className="material-symbols-outlined text-sm">water_drop</span>
-                <span>Meta calculada: {previewGoal()} Litros / dia</span>
+                <span className="material-symbols-outlined text-sm">
+                  water_drop
+                </span>
+
+                <span>
+                  Meta calculada: {previewGoal()} Litros / dia
+                </span>
               </p>
             )}
           </div>
@@ -144,17 +183,23 @@ export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-primary-container/30 flex items-center justify-center text-primary shrink-0">
-                  <span className="material-symbols-outlined text-xl">water_drop</span>
+                  <span className="material-symbols-outlined text-xl">
+                    water_drop
+                  </span>
                 </div>
+
                 <div>
                   <span className="font-label text-xs uppercase text-secondary font-semibold block">
-                    Meta Diária de Água {userWeight ? `(${userWeight} kg)` : ''}
+                    Meta Diária de Água
+                    {userWeight ? ` (${userWeight} kg)` : ''}
                   </span>
+
                   <span className="font-display text-base font-bold text-on-surface">
                     {currentWaterGoal.toFixed(1)} Litros / dia
                   </span>
                 </div>
               </div>
+
               <button
                 type="button"
                 onClick={() => setShowWeightInput(true)}
@@ -173,24 +218,36 @@ export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
         <form onSubmit={handleSave} className="space-y-4">
           {DAILY_CHECKLIST_ITEMS.map((item, index) => {
             const isChecked = checkedIds.includes(item.id);
+
+            const displayLabel =
+              item.id === 'water'
+                ? 'Cumpri minha meta de hidratação do dia'
+                : item.label;
+
             return (
               <React.Fragment key={item.id}>
-                {index > 0 && <div className="h-px bg-surface-variant w-full opacity-50"></div>}
+                {index > 0 && (
+                  <div className="h-px bg-surface-variant w-full opacity-50" />
+                )}
+
                 <label
                   onClick={() => toggleItem(item.id)}
                   className="checklist-item flex items-center justify-between p-4 rounded-lg cursor-pointer border border-transparent hover:border-surface-variant transition-colors select-none"
                 >
                   <span
                     className={`font-body text-base md:text-lg transition-all ${
-                      isChecked ? 'text-primary font-medium' : 'text-on-surface'
+                      isChecked
+                        ? 'text-primary font-medium'
+                        : 'text-on-surface'
                     }`}
                   >
-                    {item.label}
+                    {displayLabel}
                   </span>
+
                   <input
                     type="checkbox"
                     checked={isChecked}
-                    onChange={() => {}} // Handled by container click
+                    onChange={() => {}}
                     className="custom-checkbox focus:ring-primary focus:ring-offset-background focus:outline-none"
                   />
                 </label>
@@ -198,7 +255,7 @@ export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
             );
           })}
 
-          {/* Toast feedback */}
+          {/* Toast */}
           {showSavedToast && (
             <div className="p-3 bg-primary-container/30 border border-primary-container text-on-primary-container rounded-lg text-center text-sm font-medium animate-fade-in">
               ✨ Progresso do Dia {currentDay} salvo com sucesso!
@@ -211,7 +268,10 @@ export const ChecklistScreen: React.FC<ChecklistScreenProps> = ({
               type="submit"
               className="w-full bg-primary-container hover:bg-primary text-on-primary-container hover:text-on-primary font-label text-base font-semibold py-4 rounded-full transition-colors active:scale-95 duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer min-h-[52px]"
             >
-              <span className="material-symbols-outlined icon-fill">check_circle</span>
+              <span className="material-symbols-outlined icon-fill">
+                check_circle
+              </span>
+
               <span>Salvar progresso do Dia {currentDay}</span>
             </button>
           </div>
