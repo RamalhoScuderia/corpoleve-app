@@ -1,6 +1,5 @@
 import React from 'react';
 import { Screen } from '../types';
-import { USER_PROFILE_IMAGE } from '../data/challengeData';
 
 interface HeaderProps {
   currentScreen: Screen;
@@ -74,14 +73,13 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </nav>
 
-        {/* Profile Pic */}
+        {/* Logo Symbol */}
         <div 
-          onClick={() => onNavigate('progress')}
-          className="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-variant flex-shrink-0 cursor-pointer hover:border-primary transition-colors"
+          className="w-10 h-10 rounded-full overflow-hidden border border-surface-variant/80 flex-shrink-0 flex items-center justify-center select-none"
         >
           <img
-            src={USER_PROFILE_IMAGE}
-            alt="Foto do Perfil"
+            src="/favicon.svg"
+            alt="Logo Corpo Leve"
             className="w-full h-full object-cover"
           />
         </div>

@@ -1,5 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="30" fill="#3e6842"/>
-  <path d="M50 20 C65 20 80 35 80 55 C80 70 65 80 50 80 C35 80 20 70 20 55 C20 35 35 20 50 20 Z" fill="#8fbc8f"/>
-  <path d="M50 30 C40 45 40 65 50 75 C60 65 60 45 50 30 Z" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="120" fill="#85ab82"/>
+  <g fill="none" stroke="#ebf3ea" stroke-width="21" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Outer Leaf Contour -->
+    <path d="M 206 312 C 184 258 190 196 320 154 C 314 252 284 312 218 322" />
+    <!-- Stem and Central Vein -->
+    <path d="M 197 358 C 205 318 226 272 278 208" />
+  </g>
 </svg>

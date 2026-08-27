@@ -14,8 +14,12 @@ export const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ onStart }) =
           <span className="material-symbols-outlined text-primary">spa</span>
         </div>
         <h1 className="font-display text-2xl font-bold text-primary">Corpo Leve</h1>
-        <div className="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high border border-surface-variant flex items-center justify-center">
-          <span className="material-symbols-outlined text-on-surface-variant text-sm">person</span>
+        <div className="w-8 h-8 rounded-full overflow-hidden border border-surface-variant flex items-center justify-center select-none">
+          <img
+            src="/favicon.svg"
+            alt="Logo Corpo Leve"
+            className="w-full h-full object-cover"
+          />
         </div>
       </header>
 
