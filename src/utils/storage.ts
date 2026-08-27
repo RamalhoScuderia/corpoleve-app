@@ -1,6 +1,7 @@
 export const STORAGE_KEYS = {
   COMPLETED_DAYS: 'corpo_leve_completed_days',
   DAILY_CHECKLISTS: 'corpo_leve_daily_checklists',
+  DAY_ACHIEVEMENTS: 'corpo_leve_day_achievements',
   WATER_GOAL: 'corpo_leve_water_goal',
   USER_WEIGHT: 'corpo_leve_user_weight',
   CHECKLISTS_COUNT: 'corpo_leve_checklists_count',

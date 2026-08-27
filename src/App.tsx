@@ -44,6 +44,15 @@ export default function App() {
     )
   );
 
+  const [dayAchievements, setDayAchievements] = useState<
+    Record<number, number[]>
+  >(() =>
+    getItemFromStorage<Record<number, number[]>>(
+      STORAGE_KEYS.DAY_ACHIEVEMENTS,
+      {}
+    )
+  );
+
   const [waterGoal, setWaterGoal] = useState<number>(() =>
     getItemFromStorage<number>(STORAGE_KEYS.WATER_GOAL, 3.5)
   );
@@ -69,6 +78,10 @@ export default function App() {
   useEffect(() => {
     setItemInStorage(STORAGE_KEYS.DAILY_CHECKLISTS, dailyChecklists);
   }, [dailyChecklists]);
+
+  useEffect(() => {
+    setItemInStorage(STORAGE_KEYS.DAY_ACHIEVEMENTS, dayAchievements);
+  }, [dayAchievements]);
 
   useEffect(() => {
     setItemInStorage(STORAGE_KEYS.WATER_GOAL, waterGoal);
@@ -154,9 +167,24 @@ export default function App() {
     setWaterGoal(newGoal);
   };
 
+  const handleToggleAchievement = (dayNum: number, itemIndex: number) => {
+    setDayAchievements((prev) => {
+      const currentList = prev[dayNum] || [];
+      const updatedList = currentList.includes(itemIndex)
+        ? currentList.filter((idx) => idx !== itemIndex)
+        : [...currentList, itemIndex];
+
+      return {
+        ...prev,
+        [dayNum]: updatedList,
+      };
+    });
+  };
+
   const handleResetProgress = () => {
     setCompletedDays([]);
     setDailyChecklists({});
+    setDayAchievements({});
     setCompletedChecklistsCount(0);
     setSelectedDay(1);
     setCurrentScreen('dashboard');
@@ -186,6 +214,10 @@ export default function App() {
           <DayPlanScreen
             dayNumber={selectedDay}
             completedDays={completedDays}
+            dayAchievements={dayAchievements[selectedDay] || []}
+            onToggleAchievement={(itemIdx) =>
+              handleToggleAchievement(selectedDay, itemIdx)
+            }
             onCompleteDay={handleCompleteDay}
             onOpenRecipe={handleOpenRecipe}
             onChangeDay={setSelectedDay}

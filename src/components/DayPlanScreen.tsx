@@ -5,6 +5,8 @@ import { FOURTEEN_DAYS_PLANS } from '../data/challengeData';
 interface DayPlanScreenProps {
   dayNumber: number;
   completedDays: number[];
+  dayAchievements?: number[];
+  onToggleAchievement?: (itemIdx: number) => void;
   onCompleteDay: (dayNum: number) => void;
   onOpenRecipe: (recipeId: string) => void;
   onChangeDay: (dayNum: number) => void;
@@ -13,6 +15,8 @@ interface DayPlanScreenProps {
 export const DayPlanScreen: React.FC<DayPlanScreenProps> = ({
   dayNumber,
   completedDays,
+  dayAchievements = [],
+  onToggleAchievement,
   onCompleteDay,
   onOpenRecipe,
   onChangeDay,
@@ -159,27 +163,46 @@ export const DayPlanScreen: React.FC<DayPlanScreenProps> = ({
               </h2>
             </div>
 
-            <ul className="space-y-2.5">
-              {plan.checklistItems.map((item, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start gap-3 font-body text-sm sm:text-base text-on-surface"
-                >
-                  <span
-                    className={`material-symbols-outlined text-xl shrink-0 mt-0.5 ${
-                      isCompleted
-                        ? 'text-primary icon-fill'
-                        : 'text-secondary'
-                    }`}
-                  >
-                    {isCompleted
-                      ? 'check_circle'
-                      : 'radio_button_unchecked'}
-                  </span>
+            <ul className="space-y-1.5">
+              {plan.checklistItems.map((item, idx) => {
+                const isItemChecked = dayAchievements.includes(idx);
 
-                  <span>{item}</span>
-                </li>
-              ))}
+                return (
+                  <li key={idx}>
+                    <button
+                      type="button"
+                      onClick={() => onToggleAchievement?.(idx)}
+                      className={`w-full flex items-start gap-3 text-left font-body text-sm sm:text-base p-2.5 -mx-2.5 rounded-xl transition-colors cursor-pointer select-none group hover:bg-surface-container-low ${
+                        isItemChecked
+                          ? 'bg-primary-container/10 text-primary'
+                          : 'text-on-surface'
+                      }`}
+                    >
+                      <span
+                        className={`material-symbols-outlined text-xl shrink-0 mt-0.5 transition-colors ${
+                          isItemChecked
+                            ? 'text-primary icon-fill'
+                            : 'text-secondary/70 group-hover:text-primary'
+                        }`}
+                      >
+                        {isItemChecked
+                          ? 'check_circle'
+                          : 'radio_button_unchecked'}
+                      </span>
+
+                      <span
+                        className={`leading-relaxed transition-colors ${
+                          isItemChecked
+                            ? 'text-primary font-medium'
+                            : 'text-on-surface group-hover:text-primary'
+                        }`}
+                      >
+                        {item}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </section>
         )}
